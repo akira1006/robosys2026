@@ -8,6 +8,15 @@ from collections import Counter
 
 words = []
 
+top_n = None
+
+if len(sys.argv) == 3 and sys.argv[1] == "-n":
+    try:
+        top_n = int(sys.argv[2])
+    except ValueError:
+        print("error: N must be integer", file=sys.stderr)
+        sys.exit(1)
+
 for line in sys.stdin:
     for word in re.findall(r"[A-Za-z]+", line.lower()):
         if len(word) > 1:
@@ -15,5 +24,7 @@ for line in sys.stdin:
 
 counter = Counter(words)
 
-for word, freq in counter.most_common():
+result = counter.most_common(top_n)
+
+for word, freq in result:
     print(word, freq)
