@@ -6,6 +6,7 @@
 
 ## 使用例
 echo "apple apple orange" | ./text
+
 ##　結果
 apple 2
 orange 1
